@@ -1,0 +1,92 @@
+#display {
+  background: #1c2541;
+}
+
+.app .ant-layout-content {
+  height: calc(100vh - 110px);
+  border: 1px solid #001529;
+  border-top: none;
+}
+
+.app .ant-layout-footer {
+  padding: 7px 50px;
+  height: 45px;
+  background: black;
+}
+
+.app .ant-layout-footer .console {
+  opacity: 0.3;
+  background: black;
+}
+
+.app .ant-layout-footer .console:focus-within {
+  opacity: 1;
+}
+
+.app .ant-layout-sider {
+  background: black;
+  border-bottom: 1px solid white;
+}
+
+.app .ant-layout-sider .add {
+  min-height: 50vh;
+}
+
+.app .ant-layout-sider .params {
+  border-top: 1px solid white;
+  padding: 4px;
+}
+
+.params .ant-form-item {
+  margin-bottom: 4px;
+}
+
+.params .ant-space-horizontal {
+  gap: 4px !important;
+}
+
+.params .ant-form-item-control-input-content .ant-btn-dashed {
+  margin-right: 6px;
+}
+
+.params .ant-form {
+  margin-right: 2px;
+}
+
+.app .ant-layout-header h1 {
+  color: white;
+}
+
+.app #display {
+  width: 100%;
+  height: 100%;
+}
+
+.params .title-editor {
+  margin-right: 20px;
+  margin-bottom: 6px;
+  background: black;
+}
+
+.requests-pending-count {
+  color: white;
+  float: right;
+  font-size: 18px;
+}
+
+.app .add {
+  padding: 4px;
+  background: black;
+}
+
+.app .add .ant-btn {
+  width: calc(50% - 2px);
+  margin-left: 2px;
+  background: black;
+  color: white;
+}
+
+.edge-name-btns {
+  margin-bottom: 4px;
+  background: black;
+}
