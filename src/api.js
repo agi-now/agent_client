@@ -1,5 +1,5 @@
 import neo4j from 'neo4j-driver';
-import { message } from 'antd';
+import { message, Modal } from 'antd';
 
 
 function get_meta(node) {
@@ -27,6 +27,7 @@ class API {
     this.requests = [];
     setTimeout(() => {this.run()}, 100);
     this.counter = null;
+    this.error_notified = false;
   }
 
   link = (lid, rid) => {
@@ -45,15 +46,29 @@ class API {
 
   cypher = (query) => {
     return new Promise((resolve, reject) => {
-       const session = this.driver.session();
-       session.run(query).then(result => {
-          resolve(result.records);
-        })
-        .catch(error => {
-          console.log(error);
-          reject(error);
-        })
-        .then(() => session.close())
+      const session = this.driver.session();
+      session.run(query).then(result => {
+         resolve(result.records);
+       })
+      .catch(error => {
+        if (!this.error_notified) {
+          this.error_notified = true;
+          setTimeout(() => {
+          Modal.error({
+            title: "Can't connect to neo4j!",
+            content: 'Please check that you have neo4j database installed and running. Also check credentials, username must be equal to "neo4j" and password "test". Custom credentials will be added in the future. Press OK to reload',
+            onOk: () => {
+              window.location.reload(false);
+            },
+            mask: false,
+            keyboard: false,
+          });
+          }, 800);
+        }
+        console.log(error);
+        reject(error);
+      })
+      .then(() => session.close())
     });
   }
 
@@ -65,7 +80,7 @@ class API {
 
   processRequest = () => {
     if (this.counter !== null) {
-      document.getElementById('requests_count').innerHTML = this.requests.length.toString();
+//      document.getElementById('requests_count').innerHTML = this.requests.length.toString();
     }
     if (this.requests.length === 0) return;
     for (let i = 0; i < Math.min(this.requests.length, 20); i++) {

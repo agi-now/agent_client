@@ -12,7 +12,6 @@ const { Header, Footer, Sider, Content } = Layout;
 
 class EditorApp extends Component {
   onAction = (action, data) => {
-    console.log(api);
     this.graph.onAction(action, data);
   }
 
@@ -21,10 +20,10 @@ class EditorApp extends Component {
   }
 
   render = () => {
+    //           <div id="requests_count" className="requests-pending-count"></div>
     return (
       <Layout className="app">
         <Header>
-          <div id="requests_count" className="requests-pending-count"></div>
           <h1>Agent v5.0</h1>
         </Header>
         <Layout>
